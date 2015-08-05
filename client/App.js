@@ -6,11 +6,12 @@ var Footer = require('./Footer');
 
 var App = React.createClass({
   render() {
+    var { todos } = this.props;
     return (
       <section className="todoapp">
         <Header />
-        <Main />
-        <Footer />
+        <Main todos={todos} />
+        <Footer completed={0} total={todos.length} />
       </section>
     );
   }

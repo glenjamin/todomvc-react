@@ -1,4 +1,5 @@
 {
-  "blacklist": ["es6.classes", "regenerator", "es6.modules", "es6.objectSuper"],
-  "optional": ["es7.objectRestSpread"]
+  "blacklist": ["es6.classes", "regenerator", "es6.objectSuper"],
+  "optional": ["es7.objectRestSpread"],
+  "plugins": ["./react-error-catcher"]
 }

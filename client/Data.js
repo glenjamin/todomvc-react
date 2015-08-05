@@ -1,5 +1,4 @@
 var state = {
-  subscriptions: [],
   todos: [
     { text: "Learn React", completed: true },
     { text: "Experience Hot Reloading", completed: false },
@@ -7,14 +6,15 @@ var state = {
     { text: "Connect to Server", completed: false }
   ]
 };
+var subscriptions = [];
 
 function update() {
   console.log("Data updated");
-  state.subscriptions.forEach(fn => fn(state.todos));
+  subscriptions.forEach(fn => fn(state.todos));
 }
 
 exports.listen = function(fn) {
-  state.subscriptions.push(fn);
+  subscriptions.push(fn);
   update();
 };
 
@@ -22,10 +22,13 @@ exports.listen = function(fn) {
 if (module.hot) {
   if (module.hot.data) {
     state = module.hot.data.state;
+    subscriptions = module.hot.data.subscriptions;
     console.log("Hot reload complete, state:", state);
+    update();
   }
   module.hot.accept();
   module.hot.dispose(data => {
     data.state = state;
+    data.subscriptions = subscriptions;
   });
 }
