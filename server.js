@@ -14,6 +14,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/css/base.css', function(req, res) {
+  res.sendFile(path.join(__dirname, 'node_modules/todomvc-common/base.css'));
+});
+app.get('/css/index.css', function(req, res) {
+  res.sendFile(path.join(__dirname, 'node_modules/todomvc-app-css/index.css'));
+});
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

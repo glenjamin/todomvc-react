@@ -1,9 +1,17 @@
 var React = require('react');
 
+var Header = require('./Header');
+var Main = require('./Main');
+var Footer = require('./Footer');
+
 var App = React.createClass({
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <section className="todoapp">
+        <Header />
+        <Main />
+        <Footer />
+      </section>
     );
   }
 });
