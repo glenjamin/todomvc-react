@@ -1,0 +1,4 @@
+{
+  "blacklist": ["es6.classes", "regenerator", "es6.modules", "es6.objectSuper"],
+  "optional": ["es7.objectRestSpread"]
+}
