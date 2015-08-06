@@ -25,9 +25,13 @@ var Footer = React.createClass({
             <a href="#/completed">Completed</a>
           </li>
         </ul>
-        <button className="clear-completed">
-          Clear completed ({completed})
-        </button>
+        {completed > 0 &&
+          <button
+            className="clear-completed"
+            onClick={this.props.clearCompleted}
+          >
+            Clear completed ({completed})
+          </button>}
       </footer>
     );
   }

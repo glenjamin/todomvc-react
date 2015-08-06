@@ -4,13 +4,17 @@ var TodoItem = require('./TodoItem');
 
 var Main = React.createClass({
   render() {
-    var { todos, toggleTodo, editTodo, removeTodo } = this.props;
+    var { todos, toggleTodo, editTodo, removeTodo, setAll } = this.props;
     if (todos.length === 0) {
       return null;
     }
+    var all = todos.every(todo => todo.completed);
     return (
       <section className="main">
-        <input className="toggle-all" type="checkbox" />
+        <input
+          className="toggle-all" type="checkbox"
+          checked={all} onChange={() => setAll(!all)}
+        />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {todos.map((todo, i) =>
