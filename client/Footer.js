@@ -2,7 +2,7 @@ var React = require('react');
 
 var Footer = React.createClass({
   render() {
-    var { total, completed } = this.props;
+    var { filter, total, completed } = this.props;
     if (total === 0) {
       return null;
     }
@@ -16,13 +16,16 @@ var Footer = React.createClass({
         </span>
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <a className={filter === "" && "selected"}
+              href="#/">All</a>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <a className={filter === "active" && "selected"}
+              href="#/active">Active</a>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <a className={filter === "completed" && "selected"}
+              href="#/completed">Completed</a>
           </li>
         </ul>
         {completed > 0 &&

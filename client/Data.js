@@ -1,4 +1,8 @@
 var state = {
+  filter: {
+    name: '',
+    fn: () => true
+  },
   todos: [
     { id: 1, title: "Learn React", completed: true },
     { id: 2, title: "Experience Hot Reloading", completed: false },
@@ -8,6 +12,17 @@ var state = {
 };
 
 var actions = exports.actions = {};
+
+actions.setFilter = function(name) {
+  var filter = { name };
+  switch(name) {
+    case '': filter.fn = () => true; break;
+    case 'active': filter.fn = todo => !todo.completed; break;
+    case 'completed': filter.fn = todo => todo.completed; break;
+  }
+  state.filter = filter;
+  update();
+};
 
 actions.addTodo = function(title) {
   var maxId = Math.max.apply(Math, state.todos.map(todo => todo.id));
@@ -43,7 +58,7 @@ actions.setAllTodos = function(completed) {
 var subscriptions = [];
 
 function update() {
-  subscriptions.forEach(fn => fn(state.todos));
+  subscriptions.forEach(fn => fn(state));
 }
 
 exports.listen = function(fn) {

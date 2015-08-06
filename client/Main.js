@@ -4,7 +4,10 @@ var TodoItem = require('./TodoItem');
 
 var Main = React.createClass({
   render() {
-    var { todos, toggleTodo, editTodo, removeTodo, setAll } = this.props;
+    var {
+      todos, filter,
+      toggleTodo, editTodo, removeTodo, setAll
+    } = this.props;
     if (todos.length === 0) {
       return null;
     }
@@ -17,7 +20,7 @@ var Main = React.createClass({
         />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
-          {todos.map((todo, i) =>
+          {todos.filter(filter).map((todo, i) =>
             <TodoItem
               key={todo.id} todo={todo}
               edit={(title) => editTodo(i, title)}
