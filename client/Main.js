@@ -4,7 +4,7 @@ var TodoItem = require('./TodoItem');
 
 var Main = React.createClass({
   render() {
-    var { todos, toggleTodo } = this.props;
+    var { todos, toggleTodo, editTodo, removeTodo } = this.props;
     if (todos.length === 0) {
       return null;
     }
@@ -15,7 +15,9 @@ var Main = React.createClass({
         <ul className="todo-list">
           {todos.map((todo, i) =>
             <TodoItem
-              key={i} todo={todo}
+              key={todo.id} todo={todo}
+              edit={(title) => editTodo(i, title)}
+              remove={() => removeTodo(i)}
               toggle={() => toggleTodo(i)}
             />
           )}

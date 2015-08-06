@@ -13,6 +13,8 @@ var App = React.createClass({
         <Main
           todos={todos}
           toggleTodo={actions.toggleTodo}
+          editTodo={actions.editTodo}
+          removeTodo={actions.removeTodo}
         />
         <Footer completed={0} total={todos.length} />
       </section>
