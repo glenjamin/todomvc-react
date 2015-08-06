@@ -1,15 +1,27 @@
 var state = {
   todos: [
-    { text: "Learn React", completed: true },
-    { text: "Experience Hot Reloading", completed: false },
-    { text: "Build TodoMVC", completed: false },
-    { text: "Connect to Server", completed: false }
+    { title: "Learn React", completed: true },
+    { title: "Experience Hot Reloading", completed: false },
+    { title: "Build TodoMVC", completed: false },
+    { title: "Connect to Server", completed: false }
   ]
 };
+
+var actions = exports.actions = {};
+
+actions.addTodo = function(title) {
+  state.todos.push({ title, completed: false });
+  update();
+};
+
+actions.toggleTodo = function(index) {
+  state.todos[index].completed = !state.todos[index].completed;
+  update();
+};
+
 var subscriptions = [];
 
 function update() {
-  console.log("Data updated");
   subscriptions.forEach(fn => fn(state.todos));
 }
 
@@ -23,7 +35,6 @@ if (module.hot) {
   if (module.hot.data) {
     state = module.hot.data.state;
     subscriptions = module.hot.data.subscriptions;
-    console.log("Hot reload complete, state:", state);
     update();
   }
   module.hot.accept();

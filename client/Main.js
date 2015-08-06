@@ -4,7 +4,7 @@ var TodoItem = require('./TodoItem');
 
 var Main = React.createClass({
   render() {
-    var { todos } = this.props;
+    var { todos, toggleTodo } = this.props;
     if (todos.length === 0) {
       return null;
     }
@@ -13,7 +13,12 @@ var Main = React.createClass({
         <input className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
-          {todos.map((todo, i) => <TodoItem key={i} todo={todo} />)}
+          {todos.map((todo, i) =>
+            <TodoItem
+              key={i} todo={todo}
+              toggle={() => toggleTodo(i)}
+            />
+          )}
         </ul>
       </section>
     );

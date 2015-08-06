@@ -6,11 +6,14 @@ var Footer = require('./Footer');
 
 var App = React.createClass({
   render() {
-    var { todos } = this.props;
+    var { todos, actions } = this.props;
     return (
       <section className="todoapp">
-        <Header />
-        <Main todos={todos} />
+        <Header addTodo={actions.addTodo} />
+        <Main
+          todos={todos}
+          toggleTodo={actions.toggleTodo}
+        />
         <Footer completed={0} total={todos.length} />
       </section>
     );

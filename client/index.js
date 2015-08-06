@@ -7,7 +7,7 @@ var Data = require('./Data');
 Data.listen(function(todos) {
   console.log("Rendering <App>");
   React.render(
-    <App todos={todos} />,
+    <App todos={todos} actions={Data.actions} />,
     document.getElementById('root')
   );
 });

@@ -10,6 +10,7 @@
   "rules": {
     "quotes": 0,
     "strict": 0,
+    "no-use-before-define": [2, "nofunc"],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2
